@@ -25,7 +25,7 @@
     "postcss": "^8.5.6",
     "primeicons": "^7.0.0",
     "primeng": "^20.1.0",
-    "tailwindcss": "^4.1.12"
+    "tailwindcss": "^3.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.2.0",
