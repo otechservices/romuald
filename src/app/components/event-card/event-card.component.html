@@ -1,0 +1,59 @@
+<div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+  <!-- Image if available -->
+  <div *ngIf="event.image" class="h-48 overflow-hidden">
+    <img [src]="event.image" [alt]="event.title" class="w-full h-full object-cover">
+  </div>
+
+  <!-- Content -->
+  <div class="p-6">
+    <!-- Event type badge -->
+    <span [class]="'inline-block text-xs font-semibold px-2 py-1 rounded-full mb-2 ' + getEventTypeColor(event.type)">
+      {{ getEventTypeLabel(event.type) }}
+    </span>
+
+    <!-- Title -->
+    <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ event.title }}</h3>
+    
+    <!-- Description -->
+    <p class="text-gray-600 mb-4">{{ event.description }}</p>
+
+    <!-- Date and time -->
+    <div class="flex items-center space-x-4 text-sm text-gray-500 mb-4">
+      <div class="flex items-center space-x-1">
+        <i class="pi pi-calendar"></i>
+        <span>{{ event.date | date:'dd/MM/yyyy' }}</span>
+      </div>
+      <div class="flex items-center space-x-1">
+        <i class="pi pi-clock"></i>
+        <span>{{ event.time }}</span>
+      </div>
+    </div>
+
+    <!-- Location -->
+    <div class="flex items-start space-x-2 text-sm text-gray-500 mb-4">
+      <i class="pi pi-map-marker mt-0.5"></i>
+      <div>
+        <p class="font-medium">{{ event.location.name }}</p>
+        <p>{{ event.location.address }}, {{ event.location.city }}</p>
+      </div>
+    </div>
+
+    <!-- Capacity info -->
+    <div *ngIf="event.capacity" class="mb-4">
+      <div class="flex justify-between text-sm text-gray-600 mb-1">
+        <span>Inscriptions</span>
+        <span>{{ event.registeredCount }}/{{ event.capacity }}</span>
+      </div>
+      <div class="w-full bg-gray-200 rounded-full h-2">
+        <div class="bg-primary-600 h-2 rounded-full" 
+             [style.width.%]="(event.registeredCount! / event.capacity) * 100">
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <button class="btn-primary w-full">
+      Je participe
+    </button>
+  </div>
+</div>

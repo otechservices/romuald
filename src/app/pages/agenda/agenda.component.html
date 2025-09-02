@@ -1,0 +1,92 @@
+<!-- Hero Section -->
+<section class="relative h-96 flex items-center justify-center overflow-hidden bg-gradient-to-r from-primary-600 to-primary-800">
+  <div class="relative z-10 text-center text-white container-max">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Agenda</h1>
+    <p class="text-xl">Retrouvez-moi lors des prochains événements</p>
+  </div>
+</section>
+
+<!-- Events and Map -->
+<section class="section-padding">
+  <div class="container-max">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Events List -->
+      <div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Prochains événements</h2>
+        <div class="space-y-6">
+          <div *ngFor="let event of events" 
+               class="bg-white rounded-lg shadow-md p-6 cursor-pointer transition-all hover:shadow-lg"
+               (click)="selectEvent(event)"
+               [class.ring-2]="selectedEvent?.id === event.id"
+               [class.ring-primary-500]="selectedEvent?.id === event.id">
+            
+            <div class="flex items-start space-x-4">
+              <!-- Date -->
+              <div class="bg-primary-100 rounded-lg p-3 text-center min-w-[80px]">
+                <div class="text-primary-600 font-bold text-lg">
+                  {{ event.date | date:'dd' }}
+                </div>
+                <div class="text-primary-600 text-sm font-medium">
+                  {{ event.date | date:'MMM' | uppercase }}
+                </div>
+              </div>
+
+              <!-- Event Info -->
+              <div class="flex-1">
+                <div class="flex items-center space-x-2 mb-2">
+                  <i [class]="getEventTypeIcon(event.type) + ' text-primary-600'"></i>
+                  <h3 class="text-lg font-semibold text-gray-900">{{ event.title }}</h3>
+                </div>
+                
+                <p class="text-gray-600 mb-2">{{ event.description }}</p>
+                
+                <div class="flex items-center space-x-4 text-sm text-gray-500">
+                  <span>
+                    <i class="pi pi-clock mr-1"></i>
+                    {{ event.time }}
+                  </span>
+                  <span>
+                    <i class="pi pi-map-marker mr-1"></i>
+                    {{ event.location.city }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="lg:sticky lg:top-24">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Localisation</h2>
+        <div class="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
+          <div class="text-center text-gray-600">
+            <i class="pi pi-map text-4xl mb-4"></i>
+            <p class="font-medium">Carte interactive</p>
+            <p class="text-sm">Google Maps sera intégrée ici</p>
+            <div *ngIf="selectedEvent" class="mt-4 p-4 bg-white rounded-lg shadow-md">
+              <h4 class="font-semibold text-gray-900">{{ selectedEvent.title }}</h4>
+              <p class="text-sm text-gray-600">{{ selectedEvent.location.name }}</p>
+              <p class="text-sm text-gray-600">{{ selectedEvent.location.address }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="section-padding bg-primary-600 text-white">
+  <div class="container-max text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+      Rejoignez-nous lors des événements
+    </h2>
+    <p class="text-xl mb-8 max-w-2xl mx-auto">
+      Participez aux meetings et débats pour échanger directement avec le candidat
+    </p>
+    <a routerLink="/benevoles" class="btn-secondary bg-white text-primary-600 hover:bg-gray-50">
+      Devenir bénévole
+    </a>
+  </div>
+</section>

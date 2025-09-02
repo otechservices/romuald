@@ -1,0 +1,92 @@
+<div *ngIf="loading" class="flex justify-center items-center h-64">
+  <i class="pi pi-spinner pi-spin text-4xl text-primary-600"></i>
+</div>
+
+<div *ngIf="!loading && article">
+  <!-- Hero Image -->
+  <section class="relative h-96 overflow-hidden">
+    <img [src]="article.image" 
+         [alt]="article.title" 
+         class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+  </section>
+
+  <!-- Article Content -->
+  <article class="section-padding">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <header class="mb-8">
+        <div class="flex items-center space-x-4 mb-4">
+          <span class="bg-primary-100 text-primary-800 text-sm font-semibold px-3 py-1 rounded-full">
+            {{ article.category }}
+          </span>
+          <span class="text-gray-500">{{ article.publishDate | date:'dd/MM/yyyy' }}</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          {{ article.title }}
+        </h1>
+        
+        <p class="text-xl text-gray-600 leading-relaxed">
+          {{ article.summary }}
+        </p>
+        
+        <div class="flex items-center space-x-4 mt-6 pt-6 border-t border-gray-200">
+          <span class="text-gray-500">Par {{ article.author }}</span>
+          
+          <!-- Social sharing -->
+          <div class="flex items-center space-x-2 ml-auto">
+            <span class="text-gray-500 text-sm">Partager :</span>
+            <button (click)="shareOnSocial('facebook')" 
+                    class="w-8 h-8 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-colors">
+              <i class="pi pi-facebook text-sm"></i>
+            </button>
+            <button (click)="shareOnSocial('twitter')" 
+                    class="w-8 h-8 bg-sky-500 hover:bg-sky-600 text-white rounded-full flex items-center justify-center transition-colors">
+              <i class="pi pi-twitter text-sm"></i>
+            </button>
+            <button (click)="shareOnSocial('linkedin')" 
+                    class="w-8 h-8 bg-blue-700 hover:bg-blue-800 text-white rounded-full flex items-center justify-center transition-colors">
+              <i class="pi pi-linkedin text-sm"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="prose prose-lg max-w-none">
+        <p class="text-gray-700 leading-relaxed whitespace-pre-line">{{ article.content }}</p>
+      </div>
+
+      <!-- Tags -->
+      <div class="mt-8 pt-8 border-t border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Tags</h3>
+        <div class="flex flex-wrap gap-2">
+          <span *ngFor="let tag of article.tags" 
+                class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+            #{{ tag }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="mt-12 pt-8 border-t border-gray-200">
+        <a routerLink="/actualites" 
+           class="inline-flex items-center space-x-2 text-primary-600 hover:text-primary-700 font-medium">
+          <i class="pi pi-arrow-left"></i>
+          <span>Retour aux actualités</span>
+        </a>
+      </div>
+    </div>
+  </article>
+</div>
+
+<div *ngIf="!loading && !article" class="section-padding">
+  <div class="container-max text-center">
+    <h1 class="text-3xl font-bold text-gray-900 mb-4">Article non trouvé</h1>
+    <p class="text-gray-600 mb-8">L'article que vous recherchez n'existe pas.</p>
+    <a routerLink="/actualites" class="btn-primary">
+      Retour aux actualités
+    </a>
+  </div>
+</div>

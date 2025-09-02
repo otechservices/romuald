@@ -1,0 +1,90 @@
+<!-- Hero Section -->
+<section class="relative h-96 flex items-center justify-center overflow-hidden bg-gradient-to-r from-primary-600 to-primary-800">
+  <div class="relative z-10 text-center text-white container-max">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Biographie</h1>
+    <p class="text-xl">Découvrez le parcours de Romuald Martin</p>
+  </div>
+</section>
+
+<div *ngIf="candidate" class="section-padding">
+  <div class="container-max">
+    <!-- Portrait et présentation -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+      <div class="order-2 lg:order-1">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Portrait</h2>
+        <p class="text-lg text-gray-700 leading-relaxed mb-6">
+          {{ candidate.biography.summary }}
+        </p>
+        <p class="text-gray-600 leading-relaxed">
+          Né d'une famille modeste, Romuald Martin a gravi les échelons grâce à son travail et sa détermination. 
+          Convaincu que la politique doit être au service des citoyens, il s'engage pour une France plus juste, 
+          plus innovante et plus respectueuse de l'environnement.
+        </p>
+      </div>
+      
+      <div class="order-1 lg:order-2">
+        <img [src]="candidate.photo" 
+             [alt]="candidate.fullName" 
+             class="w-full max-w-md mx-auto rounded-lg shadow-lg">
+      </div>
+    </div>
+
+    <!-- Parcours académique -->
+    <div class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8">Parcours académique</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div *ngFor="let education of candidate.biography.education" 
+             class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold text-primary-700 mb-2">{{ education.degree }}</h3>
+          <p class="text-gray-700 font-medium mb-1">{{ education.institution }}</p>
+          <p class="text-gray-500">{{ education.year }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parcours professionnel -->
+    <div class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8">Parcours professionnel</h2>
+      <div class="space-y-6">
+        <div *ngFor="let career of candidate.biography.career" 
+             class="bg-white p-6 rounded-lg shadow-md">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900">{{ career.position }}</h3>
+              <p class="text-primary-600 font-medium">{{ career.company }}</p>
+            </div>
+            <span class="text-gray-500 font-medium mt-2 md:mt-0">{{ career.period }}</span>
+          </div>
+          <p class="text-gray-700">{{ career.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Engagements -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Engagements politiques -->
+      <div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Engagements politiques</h2>
+        <ul class="space-y-3">
+          <li *ngFor="let engagement of candidate.biography.politicalEngagements" 
+              class="flex items-start space-x-3">
+            <i class="pi pi-check-circle text-primary-600 mt-1"></i>
+            <span class="text-gray-700">{{ engagement }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Engagements associatifs -->
+      <div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Engagements associatifs</h2>
+        <ul class="space-y-3">
+          <li *ngFor="let engagement of candidate.biography.associativeEngagements" 
+              class="flex items-start space-x-3">
+            <i class="pi pi-heart text-red-500 mt-1"></i>
+            <span class="text-gray-700">{{ engagement }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,165 @@
+<!-- Hero Section -->
+<section class="relative h-96 flex items-center justify-center overflow-hidden bg-gradient-to-r from-primary-600 to-primary-800">
+  <div class="relative z-10 text-center text-white container-max">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Contact</h1>
+    <p class="text-xl">Échangeons ensemble sur l'avenir de la France</p>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="section-padding">
+  <div class="container-max">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Contact Form -->
+      <div>
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Envoyez-nous un message</h2>
+        
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6">
+          <!-- Name -->
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+              Nom complet *
+            </label>
+            <input 
+              type="text" 
+              id="name"
+              formControlName="name"
+              pInputText
+              [class]="'w-full ' + (isFieldInvalid('name') ? 'ng-invalid ng-dirty' : '')"
+              placeholder="Votre nom complet">
+            <small *ngIf="isFieldInvalid('name')" class="text-red-500">
+              Le nom est requis (minimum 2 caractères)
+            </small>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+              Email *
+            </label>
+            <input 
+              type="email" 
+              id="email"
+              formControlName="email"
+              pInputText
+              [class]="'w-full ' + (isFieldInvalid('email') ? 'ng-invalid ng-dirty' : '')"
+              placeholder="votre@email.com">
+            <small *ngIf="isFieldInvalid('email')" class="text-red-500">
+              Veuillez saisir une adresse email valide
+            </small>
+          </div>
+
+          <!-- Subject -->
+          <div>
+            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
+              Sujet *
+            </label>
+            <input 
+              type="text" 
+              id="subject"
+              formControlName="subject"
+              pInputText
+              [class]="'w-full ' + (isFieldInvalid('subject') ? 'ng-invalid ng-dirty' : '')"
+              placeholder="Sujet de votre message">
+            <small *ngIf="isFieldInvalid('subject')" class="text-red-500">
+              Le sujet est requis (minimum 5 caractères)
+            </small>
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+              Message *
+            </label>
+            <textarea 
+              id="message"
+              formControlName="message"
+              pInputTextarea
+              rows="6"
+              [class]="'w-full ' + (isFieldInvalid('message') ? 'ng-invalid ng-dirty' : '')"
+              placeholder="Votre message (minimum 20 caractères)">
+            </textarea>
+            <small *ngIf="isFieldInvalid('message')" class="text-red-500">
+              Le message est requis (minimum 20 caractères)
+            </small>
+          </div>
+
+          <!-- Submit Button -->
+          <button 
+            type="submit" 
+            [disabled]="loading"
+            class="btn-primary w-full flex items-center justify-center space-x-2">
+            <i *ngIf="loading" class="pi pi-spinner pi-spin"></i>
+            <span>{{ loading ? 'Envoi en cours...' : 'Envoyer le message' }}</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Informations de contact</h2>
+        
+        <!-- Contact Details -->
+        <div class="space-y-6 mb-8">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
+              <i class="pi pi-map-marker text-primary-600"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900">QG de campagne</h3>
+              <p class="text-gray-600">123 Avenue de la République<br>75011 Paris</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
+              <i class="pi pi-phone text-primary-600"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900">Téléphone</h3>
+              <p class="text-gray-600">01 23 45 67 89</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
+              <i class="pi pi-envelope text-primary-600"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900">Email</h3>
+              <p class="text-gray-600">contact@romualdmartin2025.fr</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map Placeholder -->
+        <div class="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
+          <div class="text-center text-gray-600">
+            <i class="pi pi-map text-4xl mb-4"></i>
+            <p class="font-medium">Carte du QG de campagne</p>
+            <p class="text-sm">Google Maps sera intégrée ici</p>
+          </div>
+        </div>
+
+        <!-- Office Hours -->
+        <div class="mt-8 bg-gray-50 rounded-lg p-6">
+          <h3 class="font-semibold text-gray-900 mb-4">Horaires d'ouverture</h3>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span class="text-gray-600">Lundi - Vendredi</span>
+              <span class="font-medium">9h00 - 18h00</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Samedi</span>
+              <span class="font-medium">10h00 - 16h00</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Dimanche</span>
+              <span class="font-medium">Fermé</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+<div class="bg-white rounded-lg shadow-md overflow-hidden card-hover" 
+     [class.md:flex]="featured" 
+     [class.md:h-64]="featured">
+  
+  <!-- Image -->
+  <div [class]="featured ? 'md:w-1/2' : 'w-full'">
+    <img [src]="article.image" 
+         [alt]="article.title" 
+         [class]="featured ? 'w-full h-48 md:h-full object-cover' : 'w-full h-48 object-cover'">
+  </div>
+
+  <!-- Content -->
+  <div [class]="featured ? 'p-6 md:w-1/2 flex flex-col justify-between' : 'p-6'">
+    <div>
+      <!-- Category badge -->
+      <span class="inline-block bg-primary-100 text-primary-800 text-xs font-semibold px-2 py-1 rounded-full mb-2">
+        {{ article.category }}
+      </span>
+      
+      <!-- Title -->
+      <h3 [class]="featured ? 'text-2xl font-bold text-gray-900 mb-3' : 'text-lg font-semibold text-gray-900 mb-2'">
+        <a [routerLink]="['/actualites', article.id]" class="hover:text-primary-600 transition-colors">
+          {{ article.title }}
+        </a>
+      </h3>
+      
+      <!-- Summary -->
+      <p class="text-gray-600 mb-4" [class.line-clamp-3]="!featured">
+        {{ article.summary }}
+      </p>
+    </div>
+
+    <!-- Meta info -->
+    <div class="flex items-center justify-between text-sm text-gray-500">
+      <span>{{ article.publishDate | date:'dd/MM/yyyy' }}</span>
+      <span>Par {{ article.author }}</span>
+    </div>
+  </div>
+</div>

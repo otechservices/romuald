@@ -1,0 +1,32 @@
+<div class="bg-white rounded-lg shadow-md overflow-hidden card-hover h-full">
+  <!-- Header with icon -->
+  <div [class]="theme.color + ' p-6 text-white'">
+    <div class="flex items-center space-x-4">
+      <i [class]="theme.icon + ' text-3xl'"></i>
+      <h3 class="text-xl font-bold">{{ theme.title }}</h3>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="p-6">
+    <p class="text-gray-600 mb-4">{{ theme.description }}</p>
+    
+    <!-- Proposals count -->
+    <div class="flex items-center justify-between mb-4">
+      <span class="text-sm text-gray-500">
+        {{ theme.proposals.length }} proposition{{ theme.proposals.length > 1 ? 's' : '' }}
+      </span>
+      <p-chip 
+        label="Priorité haute" 
+        *ngIf="theme.proposals.some(p => p.priority === 'high')"
+        class="bg-red-100 text-red-800">
+      </p-chip>
+    </div>
+
+    <!-- CTA Button -->
+    <a [routerLink]="['/programme', theme.id]" 
+       class="btn-primary w-full text-center block">
+      Découvrir les propositions
+    </a>
+  </div>
+</div>

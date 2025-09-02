@@ -1,0 +1,25 @@
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background -->
+  <div class="absolute inset-0 hero-gradient"></div>
+  <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+  
+  <!-- Content -->
+  <div class="relative z-10 text-center text-white container-max">
+    <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+      {{ title }}
+    </h1>
+    <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-fade-in-delay">
+      {{ subtitle }}
+    </p>
+    <div *ngIf="showCta" class="animate-fade-in-delay-2">
+      <a [routerLink]="ctaLink" class="btn-primary text-lg px-8 py-4 inline-block">
+        {{ ctaText }}
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <i class="pi pi-chevron-down text-white text-2xl"></i>
+  </div>
+</section>

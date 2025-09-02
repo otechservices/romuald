@@ -1,0 +1,134 @@
+<!-- Hero Section -->
+<app-hero 
+  title="Romuald Martin"
+  subtitle="Ensemble pour un avenir meilleur"
+  [showCta]="true">
+</app-hero>
+
+<!-- Video Section -->
+<section class="section-padding bg-gray-50">
+  <div class="container-max">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Découvrez ma vision pour la France
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Une présentation de 5 minutes pour comprendre les enjeux de cette élection
+      </p>
+    </div>
+    
+    <div class="max-w-4xl mx-auto">
+      <div class="relative aspect-video bg-gray-900 rounded-lg overflow-hidden shadow-xl">
+        <iframe 
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+          title="Présentation du candidat"
+          class="w-full h-full"
+          frameborder="0" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Key Messages -->
+<section class="section-padding">
+  <div class="container-max">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Mes engagements pour la France
+      </h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="text-center">
+        <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="pi pi-chart-line text-2xl text-primary-600"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">Économie dynamique</h3>
+        <p class="text-gray-600">Relancer la croissance et créer 1 million d'emplois en 5 ans</p>
+      </div>
+      
+      <div class="text-center">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="pi pi-globe text-2xl text-green-600"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">Transition écologique</h3>
+        <p class="text-gray-600">Neutralité carbone d'ici 2035 avec un plan d'investissement massif</p>
+      </div>
+      
+      <div class="text-center">
+        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="pi pi-heart text-2xl text-red-600"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">Justice sociale</h3>
+        <p class="text-gray-600">Réduire les inégalités et garantir l'accès aux services publics</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured News -->
+<section class="section-padding bg-gray-50">
+  <div class="container-max">
+    <div class="flex justify-between items-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+        Actualités récentes
+      </h2>
+      <a routerLink="/actualites" class="btn-secondary">
+        Voir toutes les actualités
+      </a>
+    </div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Featured article -->
+      <div *ngIf="featuredNews[0]" class="lg:row-span-2">
+        <app-news-card [article]="featuredNews[0]" [featured]="true"></app-news-card>
+      </div>
+      
+      <!-- Other articles -->
+      <div class="space-y-6">
+        <app-news-card 
+          *ngFor="let article of featuredNews.slice(1)" 
+          [article]="article">
+        </app-news-card>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Upcoming Events -->
+<section class="section-padding">
+  <div class="container-max">
+    <div class="flex justify-between items-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+        Prochains événements
+      </h2>
+      <a routerLink="/agenda" class="btn-secondary">
+        Voir l'agenda complet
+      </a>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <app-event-card 
+        *ngFor="let event of upcomingEvents" 
+        [event]="event">
+      </app-event-card>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter CTA -->
+<section class="section-padding bg-primary-600 text-white">
+  <div class="container-max text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+      Restez informé de la campagne
+    </h2>
+    <p class="text-xl mb-8 max-w-2xl mx-auto">
+      Recevez les dernières actualités et les invitations aux événements directement dans votre boîte mail
+    </p>
+    <a routerLink="/newsletter" class="btn-secondary bg-white text-primary-600 hover:bg-gray-50">
+      S'abonner à la newsletter
+    </a>
+  </div>
+</section>

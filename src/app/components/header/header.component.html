@@ -1,0 +1,39 @@
+<header class="bg-white shadow-lg sticky top-0 z-50">
+  <div class="container-max">
+    <div class="flex items-center justify-between py-4">
+      <!-- Logo et slogan -->
+      <div class="flex items-center space-x-4">
+        <img src="assets/logo.png" alt="Logo" class="h-12 w-12 rounded-full">
+        <div>
+          <h1 class="text-xl font-bold text-primary-700">Romuald Martin</h1>
+          <p class="text-sm text-gray-600">Ensemble pour un avenir meilleur</p>
+        </div>
+      </div>
+
+      <!-- Navigation desktop -->
+      <nav class="hidden lg:block">
+        <p-menubar [model]="items" class="border-none bg-transparent">
+          <ng-template pTemplate="start">
+            <span></span>
+          </ng-template>
+        </p-menubar>
+      </nav>
+
+      <!-- Bouton mobile menu -->
+      <button class="lg:hidden p-2 rounded-md text-gray-600 hover:text-primary-600">
+        <i class="pi pi-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Navigation mobile -->
+    <nav class="lg:hidden pb-4">
+      <div class="flex flex-col space-y-2">
+        <a *ngFor="let item of items" 
+           [routerLink]="item.routerLink" 
+           class="block px-4 py-2 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors">
+          {{ item.label }}
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>

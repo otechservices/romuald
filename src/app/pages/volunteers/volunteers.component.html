@@ -1,0 +1,198 @@
+<!-- Hero Section -->
+<section class="relative h-96 flex items-center justify-center overflow-hidden bg-gradient-to-r from-primary-600 to-primary-800">
+  <div class="relative z-10 text-center text-white container-max">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Espace bénévoles</h1>
+    <p class="text-xl">Rejoignez l'équipe et participez au changement</p>
+  </div>
+</section>
+
+<!-- Why Volunteer -->
+<section class="section-padding">
+  <div class="container-max">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Pourquoi devenir bénévole ?
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Votre engagement est essentiel pour porter notre projet commun et construire l'avenir que nous voulons
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <div class="text-center">
+        <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="pi pi-users text-2xl text-primary-600"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">Rejoindre une communauté</h3>
+        <p class="text-gray-600">Rencontrez des personnes qui partagent vos valeurs et votre vision</p>
+      </div>
+      
+      <div class="text-center">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="pi pi-cog text-2xl text-green-600"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">Développer vos compétences</h3>
+        <p class="text-gray-600">Acquérez de nouvelles compétences en communication, organisation et leadership</p>
+      </div>
+      
+      <div class="text-center">
+        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="pi pi-heart text-2xl text-red-600"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">Faire la différence</h3>
+        <p class="text-gray-600">Contribuez concrètement à la transformation de notre société</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Registration Form -->
+<section class="section-padding bg-gray-50">
+  <div class="container-max">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Inscription bénévole</h2>
+        <p class="text-gray-600">Remplissez ce formulaire pour rejoindre notre équipe</p>
+      </div>
+
+      <form [formGroup]="volunteerForm" (ngSubmit)="onSubmit()" class="bg-white rounded-lg shadow-md p-8">
+        <!-- Personal Info -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">
+              Prénom *
+            </label>
+            <input 
+              type="text" 
+              id="firstName"
+              formControlName="firstName"
+              pInputText
+              [class]="'w-full ' + (isFieldInvalid('firstName') ? 'ng-invalid ng-dirty' : '')"
+              placeholder="Votre prénom">
+            <small *ngIf="isFieldInvalid('firstName')" class="text-red-500">
+              Le prénom est requis (minimum 2 caractères)
+            </small>
+          </div>
+          
+          <div>
+            <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">
+              Nom *
+            </label>
+            <input 
+              type="text" 
+              id="lastName"
+              formControlName="lastName"
+              pInputText
+              [class]="'w-full ' + (isFieldInvalid('lastName') ? 'ng-invalid ng-dirty' : '')"
+              placeholder="Votre nom">
+            <small *ngIf="isFieldInvalid('lastName')" class="text-red-500">
+              Le nom est requis (minimum 2 caractères)
+            </small>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+              Email *
+            </label>
+            <input 
+              type="email" 
+              id="email"
+              formControlName="email"
+              pInputText
+              [class]="'w-full ' + (isFieldInvalid('email') ? 'ng-invalid ng-dirty' : '')"
+              placeholder="votre@email.com">
+            <small *ngIf="isFieldInvalid('email')" class="text-red-500">
+              Veuillez saisir une adresse email valide
+            </small>
+          </div>
+          
+          <div>
+            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+              Téléphone *
+            </label>
+            <input 
+              type="tel" 
+              id="phone"
+              formControlName="phone"
+              pInputText
+              [class]="'w-full ' + (isFieldInvalid('phone') ? 'ng-invalid ng-dirty' : '')"
+              placeholder="06 12 34 56 78">
+            <small *ngIf="isFieldInvalid('phone')" class="text-red-500">
+              Veuillez saisir un numéro de téléphone valide
+            </small>
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Compétences *
+          </label>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+            <label *ngFor="let skill of availableSkills" 
+                   class="flex items-center space-x-2 cursor-pointer">
+              <input 
+                type="checkbox" 
+                [value]="skill"
+                (change)="onSkillChange($event)"
+                class="rounded border-gray-300 text-primary-600 focus:ring-primary-500">
+              <span class="text-sm text-gray-700">{{ skill }}</span>
+            </label>
+          </div>
+          <small *ngIf="isFieldInvalid('skills')" class="text-red-500">
+            Veuillez sélectionner au moins une compétence
+          </small>
+        </div>
+
+        <!-- Availability -->
+        <div class="mb-6">
+          <label for="availability" class="block text-sm font-medium text-gray-700 mb-2">
+            Disponibilité *
+          </label>
+          <select 
+            id="availability"
+            formControlName="availability"
+            class="w-full p-3 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500">
+            <option value="">Sélectionnez votre disponibilité</option>
+            <option *ngFor="let option of availabilityOptions" [value]="option">
+              {{ option }}
+            </option>
+          </select>
+          <small *ngIf="isFieldInvalid('availability')" class="text-red-500">
+            Veuillez sélectionner votre disponibilité
+          </small>
+        </div>
+
+        <!-- Motivation -->
+        <div class="mb-8">
+          <label for="motivation" class="block text-sm font-medium text-gray-700 mb-2">
+            Motivation *
+          </label>
+          <textarea 
+            id="motivation"
+            formControlName="motivation"
+            pInputTextarea
+            rows="4"
+            [class]="'w-full ' + (isFieldInvalid('motivation') ? 'ng-invalid ng-dirty' : '')"
+            placeholder="Expliquez-nous pourquoi vous souhaitez rejoindre notre équipe (minimum 50 caractères)">
+          </textarea>
+          <small *ngIf="isFieldInvalid('motivation')" class="text-red-500">
+            Veuillez expliquer votre motivation (minimum 50 caractères)
+          </small>
+        </div>
+
+        <!-- Submit Button -->
+        <button 
+          type="submit" 
+          [disabled]="loading"
+          class="btn-primary w-full flex items-center justify-center space-x-2">
+          <i *ngIf="loading" class="pi pi-spinner pi-spin"></i>
+          <span>{{ loading ? 'Inscription en cours...' : 'S\'inscrire comme bénévole' }}</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+<!-- Hero Section -->
+<section class="relative h-96 flex items-center justify-center overflow-hidden bg-gradient-to-r from-primary-600 to-primary-800">
+  <div class="relative z-10 text-center text-white container-max">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Programme</h1>
+    <p class="text-xl">Un projet ambitieux pour transformer la France</p>
+  </div>
+</section>
+
+<!-- Program Themes -->
+<section class="section-padding">
+  <div class="container-max">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Les grands thèmes de notre projet
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Découvrez nos propositions concrètes pour répondre aux défis d'aujourd'hui et de demain
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <app-program-card 
+        *ngFor="let theme of themes" 
+        [theme]="theme">
+      </app-program-card>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="section-padding bg-primary-600 text-white">
+  <div class="container-max text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+      Participez à la construction du programme
+    </h2>
+    <p class="text-xl mb-8 max-w-2xl mx-auto">
+      Vos idées et suggestions sont importantes pour enrichir notre projet commun
+    </p>
+    <a routerLink="/contact" class="btn-secondary bg-white text-primary-600 hover:bg-gray-50">
+      Proposer une idée
+    </a>
+  </div>
+</section>
